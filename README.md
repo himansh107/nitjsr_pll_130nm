@@ -1,5 +1,5 @@
 # 180nm Clock mulitplier PLL 
-Implementation of on chip clock multiplier PLL using SCL 180nm library file
+Design of on chip clock multiplier PLL using SCL 180nm library file
 
 ## Introduction
 A clock multiplier Phase-Locked Loop (PLL) is a negative feedback control system that generates a high-frequency output clock whose phase is related to the low frequency input clock. The need for PLLs is widespread as they find application in analog, digital, RF and communication systems. <br>The low-frequency clock can be generated using a crystal with frequencies up to 200 MHz. Generating a high-frequency clock with high spectral purity is not possible with a crystal and this is where PLLs come into play. <br>
