@@ -72,7 +72,7 @@ The loop filter consists of a resistor in series with a capacitor. This combinat
 
 **Simulated output (CP + LF)** </p>
 
-![Screenshot 2024-03-20 120732](https://github.com/himansh107/himanshu_pll_nitj/assets/75253218/2ae63ff7-bca2-4c0f-9ef0-c7915679537a)
+![Screenshot 2024-03-20 120732](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/8550002a-a493-4e47-b917-310930bcb313)
 </p>
 
  - NOTE - The above simulated output is of the Vctrl signal produced as a consequence of UP signal. As of now the output is errorneous. Reason being the voltage swing is from 1.79310V to 1.79390 V i.e.only 0.8mV. Upon plotting for long duration the plot would turn out to be a straight line.
