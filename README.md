@@ -1,4 +1,4 @@
-# 180nm Clock mulitplier PLL 
+# Clock mulitplier PLL 130nm 
 Design of on chip clock multiplier PLL using SCL 180nm library file
 
 ## Introduction
@@ -27,9 +27,11 @@ A simple PLL consists of a Phase and Frequency Detector (PFD), Charge Pump (CP),
   - reference signal - f_vco
 
   </p>
-There is a 1ns difference between the time period of f_vco and f_clk_in. This is done to emulate phase & frequency error. 
-  </p>
-  
+There is a 1ns difference between the time period of f_vco and f_clk_in. This is done to emulate phase & frequency error.   </p>
+
+  **Expected output** </p>
+  ![PDF](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/72426122-950e-4538-9b88-d68a2a7a94b3)
+
   **Simulated output** </p>
 
  - considering constant phase difference between input signal and reference signal </p>
@@ -76,5 +78,27 @@ The loop filter consists of a resistor in series with a capacitor. This combinat
 </p>
 
  - NOTE - The above simulated output is of the Vctrl signal produced as a consequence of UP signal. As of now the output is errorneous. Reason being the voltage swing is from 1.79310V to 1.79390 V i.e.only 0.8mV. Upon plotting for long duration the plot would turn out to be a straight line.
+
+<h3> References </h3>
+<b>[1]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
+<b>[2]</b> Vincent Von Kaenel, “A 320 MHz, 1.5 mW @ 1.35 V CMOS PLL for Microprocessor Clock Generation” (1996) <br> <br> 
+<b>[3]</b> J. Dhurga Devi “Jitter Reduced Self Biased PLLs—A Systematic Simulation Study”
+<b>[4]</b> Jitter and Phase Noise in Ring Oscillators, Ali Hajimiri, Sotirios Limotyrakis, and Thomas H. Lee <br> <br> 
+<b>[5]</b> Mo Zhang, A Programmable F ammable Frequency Divider Ha equency Divider Having a Wide Division Ratio ving a Wide Division Ratio Range, and Close-to-50% Output Duty-Cycle  <br> <br> 
+<b>[6]</b> George Tom Varghese, MS thesis on “Phase Locked Loop Design as a Frequency Multiplier” NIT Rourkela (2009) <br> <br> 
+<b>[7]</b> Yang Liu, “Phase Noise in CMOS Phase-Locked Loop Circuits” (2011) <br> <br> 
+<b>[8]</b>	Rushabh Mehta, Design and implementation of a phase locked loop for high-speed serial links <br> <br> 
+<b>[9]</b> Shruti Suman, An Improved Performance Ring VCO: Analysis and Design (2018)  <br> <br> 
+<h3> Acknowledgements </h3>
+
+- I thank Mr. Kunal Ghosh, co-founder [VSD](https://www.vlsisystemdesign.com/), for helping me through out the project, I would like to thank my college professors Dr. Chandradeep Singh and Dr. Kunal Singh for encouraging me initiate this project and helping me with conceptual doubts.
+- I thank Stephan Scrippers for helping me with the doubts in xschem and Google, Skywater for the pdk.
+- I would also thank Paras Gidd, who's PLL repository was a constant reference for this project.
+
+
+<h3> Contact </h3>
+
+* Himanshu Singh (Author), BTech EE - himanshuksingh107@gmail.com
+* Kunal Ghosh, Co-founder, VSD Corp. Pvt. Ltd. - kunalghosh@gmail.com
 
 
