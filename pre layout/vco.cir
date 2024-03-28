@@ -1,0 +1,51 @@
+** sch_path: /home/vboxuser/Desktop/vco/vco.sch
+**.subckt vco
+V1 VDD GND 1.8v
+V2 vctrl GND 0.8V
+XM21 Vp Vn GND GND sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM22 Vp Vp VDD Vp sky130_fd_pr__pfet_01v8 L=0.18 W=1.8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+R1 Vn vctrl 1 m=1
+x1 Vp net6 net7 Vn cs_inv
+x2 Vp net7 net1 Vn cs_inv
+x3 Vp net1 net2 Vn cs_inv
+x4 Vp net5 net6 Vn cs_inv
+x5 Vp net2 net3 Vn cs_inv
+x6 Vp net3 net4 Vn cs_inv
+x7 Vp net4 net5 Vn cs_inv
+XM23 osc net6 GND GND sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM24 osc net6 VDD VDD sky130_fd_pr__pfet_01v8 L=0.18 W=0.72 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+**** begin user architecture code
+
+
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.tran 1ns 10u
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  cs_inv.sym # of pins=4
+** sym_path: /home/vboxuser/Desktop/vco/cs_inv.sym
+** sch_path: /home/vboxuser/Desktop/vco/cs_inv.sch
+.subckt cs_inv Vp in out Vn
+*.ipin in
+*.opin out
+*.iopin Vp
+*.iopin Vn
+XM1 out in net1 GND sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 out in net2 VDD sky130_fd_pr__pfet_01v8 L=0.18 W=0.72 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 Vp VDD VDD sky130_fd_pr__pfet_01v8 L=0.18 W=0.72 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 Vn GND GND sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL VDD
+.GLOBAL GND
+.end
