@@ -152,6 +152,7 @@ Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
 **100Mhz output**
 </p>
 
+![12 5mhz](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/63fd74bb-df1e-4dc5-8792-fa25ee5f8dec)
 
 </p>
 
