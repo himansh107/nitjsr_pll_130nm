@@ -6,13 +6,27 @@ A clock multiplier Phase-Locked Loop (PLL) is a negative feedback control system
 
 A simple PLL consists of a Phase and Frequency Detector (PFD), Charge Pump (CP), Loop Filter (LF), Voltage Controlled Oscillator (VCO) and a frequency divider in the feeback path <br>
 
-## Intended block diagram 
-![Blank diagram](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/b4aa826b-ffd5-4b25-a903-095417aef5d9)
+## Specifications
+
+| Parameter | Description | min | val | max | Unit | Conditions |
+| --- | --- | --- | --- | --- | --- | --- |
+| VDD | Digital Supply | - | 1.8 | - | V | T = 27C |
+| F<sub>CLKREF</sub> | Reference | 5 | 9 | 12.5 | MHz | T = 27C |
+| F<sub>CLKOUT</sub> | Output Clock | 39.93 | 71.63 | 100.5 | MHz | PLL Mode, T = 27C |
+| J<sub>RMS</sub> | Jitter (rms) | - | - | - | ps | PLL_Mode |
+| DC | Duty Cycle | 66.65 | 66.11 | 65.92 | % | T = 27C | 
+| T<sub>SET</sub> | Settling Time | ~2.5 | - | ~6 | us | T = 27C |
+| C<sub>L</sub> | Load Capacitance | - | - | - | fF | T = 27C |
+| IDD | Supply Current | - | - | - | fF | T = 27C |
+
 
 ## EDA tools used
 
 1. xschem
 2. ngspice
+
+## Intended block diagram 
+![Blank diagram](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/b4aa826b-ffd5-4b25-a903-095417aef5d9) </p>
 
 ## Pre layout simulations
 
@@ -116,7 +130,7 @@ The frequency divider used in this circuit divides the input frequency by 8 time
 
 </p>
 
-### Simulation results
+### Pre layout Simulation results
 </p>
 
 Generates 8x Multiplied Clock
@@ -163,7 +177,7 @@ Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
 
 - I thank Mr. Kunal Ghosh, co-founder [VSD](https://www.vlsisystemdesign.com/), for helping me through out the project, I would like to thank my college professors Dr. Chandradeep Singh and Dr. Kunal Singh for encouraging me initiate this project and helping me with conceptual doubts.
 - I thank Stephan Scrippers for helping me with the doubts in xschem and skywater pdk.
-- I would also thank Paras Gidd, who's PLL repository was a constant reference for this project.
+- I would also thank Paras Gidd, who's PLL repository was a reference for this project.
 
 
 <h3> Contact Information</h3>
