@@ -1,4 +1,4 @@
-# Clock mulitplier PLL 130nm 
+# 130nm Clock mulitplier PLL
 Design of on chip clock multiplier PLL using sky130nm library file
 
 ## Introduction
@@ -62,22 +62,91 @@ In the above schematic transistors M4 and M3 act as current sources while transi
 This charge pump current is fed into the low pass filter. The low pass filter is a capacitor in series with a resistor. The entire system is connected in shunt with the control loop. The duration of pulses from the charge pump decides the amount of charge injected in the capacitor. </p> 
 
 **Circuit of loop filter used** </p>
-![Screenshot 2024-03-20 115846](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/c0a05217-c34a-4d3c-b5d2-017c7602196d)
+![loop filter](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/07c268e4-ff60-4b9c-b4bd-4323ff4e46ee)
+
 </p>
 This charge on the plates of the capacitor generates a voltage, which is then used as the control signal (Vctrl) to the VCO. </p>
 
 **Design considerations of Loop filter**</p>
-The loop filter consists of a resistor in series with a capacitor. This combination is in parallel with another capacitor as shown in figure above Capacitor C1 adds an integrator path and introduces a pole. The resistor adds a proportional path and introduces a zero. Thus, the system is stable with the addition of these two paths. Capacitor C2 is used to suppress the Vctrl ripple. However, the addition of an additional capacitor comprises on the stability of the PLL. This is because C2 adds another pole. So, to mitigate this issue the value of C2 is chosen to be smaller than C1. </p>
+The loop filter consists of a resistor in series with a capacitor. This combination is in parallel with another capacitor as shown in figure above Capacitor C1 adds an integrator path and introduces a pole. The resistor adds a proportional path and introduces a zero. Thus, the system is stable with the addition of these two paths. Capacitor C2 is used to suppress the Vctrl ripple. However, the addition of an additional capacitor comprises on the stability of the PLL. This is because C2 adds another pole. So, to mitigate this issue the value of C2 is chosen to be smaller than C1 (~C2 = 0.2*C1) </p>
 
 **Expected output (CP+LF)** </p>
 ![image](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/17e7cefc-83dc-4d28-8b2f-a3c657a7504e)
 
 **Simulated output (CP + LF)** </p>
 
-![Screenshot 2024-03-20 120732](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/8550002a-a493-4e47-b917-310930bcb313)
+**Charge pump output for UP signal** </p>
+![cp_up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/f8af9b6b-3527-493c-9036-8f0bd2488d93)
 </p>
 
- - NOTE - The above simulated output is of the Vctrl signal produced as a consequence of UP signal. As of now the output is errorneous. Reason being the voltage swing is from 1.79310V to 1.79390 V i.e.only 0.8mV. Upon plotting for long duration the plot would turn out to be a straight line.
+**Charge pump output for DOWN signal** </p>
+
+![cp_down](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/8867d62f-db7e-44b9-8661-67b459d0cd79)
+
+### Voltage controlled oscillator  
+</p>
+
+The control voltage is fed to a differential ring oscillator VCO. The VCO produces an output which is oscillating in nature. The frequency of these oscillations is a function of control voltage. </p>
+
+**Schematic of VCO** </p>
+![vco_full](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/dfc0547b-6e6c-40c3-9134-7b91a8fe3fec)
+
+<br>
+
+**Simulated output of VCO** </p>
+
+![vco_o](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/e7d3f9d2-d2df-4e5d-bf41-2ba48ebf410d)
+</p>
+
+We can see that the frequency of oscillations increases with increase in control voltage input to VCO. </p>
+
+### Frequency Divider 
+</p>
+The frequency divider used in this circuit divides the input frequency by 8 times. </p>
+
+**Simulated output** </p>
+
+![fd](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/e941b29a-a736-4024-9de8-6e646025c8ad) </p>
+
+## Full PLL Simulation  
+</p>
+
+**Integrated schematic** </p>
+![pll](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/abf8a8a8-83d6-4d39-a57c-2fb0914da0ff)
+
+</p>
+
+### Simulation results
+</p>
+
+Generates 8x Multiplied Clock
+
+<b> Pre-Layout: </b> <br>
+
+Frequency Obtained for 5Mhz input: &nbsp;&nbsp;&nbsp;39.93MHz <br>
+Frequency Obtained for 12.5Mhz input: &nbsp;&nbsp;&nbsp;100.5MHz
+
+Duty Cycle obtained: &nbsp;&nbsp;&nbsp;66.65% at 40MHz and 65.92% at 100MHz
+
+Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
+
+
+**40Mhz output** 
+</p>
+
+
+**100Mhz output**
+</p>
+
+
+</p>
+
+**Close up for 100Mhz** </p>
+![12 5mhz closeup](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/88a810dc-526c-47c8-9e8e-c0d69aa15353) </p>
+
+**Red signal constantly overlaps blue signal indicating locked state.** </p>
+
+
 
 <h3> References </h3>
 <b>[1]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
@@ -89,14 +158,15 @@ The loop filter consists of a resistor in series with a capacitor. This combinat
 <b>[7]</b> Yang Liu, “Phase Noise in CMOS Phase-Locked Loop Circuits” (2011) <br> <br> 
 <b>[8]</b>	Rushabh Mehta, Design and implementation of a phase locked loop for high-speed serial links <br> <br> 
 <b>[9]</b> Shruti Suman, An Improved Performance Ring VCO: Analysis and Design (2018)  <br> <br> 
+<b>[10]</b> Scott Buchanan, Phase Locked Loop Integrated Circuit (2015)  <br> <br> 
 <h3> Acknowledgements </h3>
 
 - I thank Mr. Kunal Ghosh, co-founder [VSD](https://www.vlsisystemdesign.com/), for helping me through out the project, I would like to thank my college professors Dr. Chandradeep Singh and Dr. Kunal Singh for encouraging me initiate this project and helping me with conceptual doubts.
-- I thank Stephan Scrippers for helping me with the doubts in xschem and Google, Skywater for the pdk.
+- I thank Stephan Scrippers for helping me with the doubts in xschem and skywater pdk.
 - I would also thank Paras Gidd, who's PLL repository was a constant reference for this project.
 
 
-<h3> Contact </h3>
+<h3> Contact Information</h3>
 
 * Himanshu Singh (Author), BTech EE - himanshuksingh107@gmail.com
 * Kunal Ghosh, Co-founder, VSD Corp. Pvt. Ltd. - kunalghosh@gmail.com
