@@ -180,4 +180,15 @@ Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
 <b>[10]</b> Scott Buchanan, Phase Locked Loop Integrated Circuit (2015)  <br> <br> 
 
 
+<h3> Acknowledgements </h3>
+
+- I thank Mr. Kunal Ghosh, co-founder [VSD](https://www.vlsisystemdesign.com/), for helping me through out the project, I would like to thank my college professors Dr. Chandradeep Singh and Dr. Kunal Singh for encouraging me initiate this project and helping me with conceptual doubts.
+- I thank Stephan Scrippers for helping me with the doubts in xschem and skywater pdk.
+- I would also thank Paras Gidd, who's PLL repository was a reference for this project.
+
+
+<h3> Contact Information</h3>
+
+* Himanshu Singh (Author), BTech EE - himanshuksingh107@gmail.com
+* Kunal Ghosh, Co-founder, VSD Corp. Pvt. Ltd. - kunalghosh@gmail.com
 
