@@ -12,10 +12,11 @@ A simple PLL consists of a Phase and Frequency Detector (PFD), Charge Pump (CP),
 | --- | --- | --- | --- | --- | --- | --- |
 | VDD | Digital Supply | - | 1.8 | - | V | T = 27C |
 | F<sub>CLKREF</sub> | Reference | 5 | 9 | 12.5 | MHz | T = 27C |
-| F<sub>CLKOUT</sub> | Output Clock | 39.93 | 71.63 | 100.5 | MHz | PLL Mode, T = 27C |
+| F<sub>CLKOUT</sub> | Output Clock | 40.98 | 71.42 | 100 | MHz | PLL Mode, T = 27C |
+| V<sub>ctrl</sub> | Control Voltage | 0.77 | 0.817 | 0.844 | MHz | PLL Mode, T = 27C |
 | J<sub>RMS</sub> | Jitter (rms) | - | - | - | ps | PLL_Mode |
-| DC | Duty Cycle | 66.65 | 66.11 | 65.92 | % | T = 27C | 
-| T<sub>SET</sub> | Settling Time | ~2.5 | - | ~6 | us | T = 27C |
+| DC | Duty Cycle | 60.24 | 61.26 | 61.38 | % | T = 27C | 
+| T<sub>SET</sub> | Settling Time | ~12 | ~11.5 | ~9 | us | T = 27C |
 | C<sub>L</sub> | Load Capacitance | - | - | - | fF | T = 27C |
 | IDD | Supply Current | - | - | - | fF | T = 27C |
 
@@ -76,7 +77,8 @@ In the above schematic transistors M4 and M3 act as current sources while transi
 This charge pump current is fed into the low pass filter. The low pass filter is a capacitor in series with a resistor. The entire system is connected in shunt with the control loop. The duration of pulses from the charge pump decides the amount of charge injected in the capacitor. </p> 
 
 **Circuit of loop filter used** </p>
-![loop filter](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/07c268e4-ff60-4b9c-b4bd-4323ff4e46ee)
+
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/dbb0c2a0-bd57-489f-9b6d-69b2edfd0263" width="400"/>
 
 </p>
 This charge on the plates of the capacitor generates a voltage, which is then used as the control signal (Vctrl) to the VCO. </p>
@@ -137,18 +139,21 @@ Generates 8x Multiplied Clock
 
 <b> Pre-Layout: </b> <br>
 
-Frequency Obtained for 5Mhz input: &nbsp;&nbsp;&nbsp;39.93MHz <br>
-Frequency Obtained for 12.5Mhz input: &nbsp;&nbsp;&nbsp;100.5MHz
+Frequency Obtained for 5Mhz input: &nbsp;&nbsp;&nbsp; 40.98MHz <br>
+Frequency Obtained for 12.5Mhz input: &nbsp;&nbsp;&nbsp; 100MHz
 
-Duty Cycle obtained: &nbsp;&nbsp;&nbsp;66.65% at 40MHz and 65.92% at 100MHz
+Duty Cycle obtained: &nbsp;&nbsp;&nbsp; 60.24% at 40MHz and 61.38% at 100MHz
 
-Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
+Lock-in starts at ~12us for 5MHz input and ~9us for 12.5Mhz input
 
 
 **40Mhz output** 
 </p>
 
-![5mhz](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/7389b432-c6e5-4f64-80cd-2831aa67e6b6)
+
+![5mhz, 40 98mhz, 12us](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/24ef39cf-3469-4555-af45-f196ab5a8252)
+
+
 
 
 </p>
@@ -156,17 +161,181 @@ Lock-in starts at ~2.5us for 5MHz input and ~6us for 12.5Mhz input
 **100Mhz output**
 </p>
 
-![12 5mhz](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/63fd74bb-df1e-4dc5-8792-fa25ee5f8dec)
+
+![12 5mhz, 100mhz, 9us](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/90e3611a-f67f-4c99-b4a6-323000cda41b)
+
+
 
 </p>
 
 **Close up for 100Mhz** </p>
-![12 5mhz closeup](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/88a810dc-526c-47c8-9e8e-c0d69aa15353) </p>
+![close up for 100mhz op](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/51e7675e-48ff-4e51-bccb-4e483883e9e7)
+ </p>
 
 **Red signal constantly overlaps blue signal indicating locked state.** </p>
 
+**Pre-layout summary** </p>
+
+| Input Frequency | Output Frequency |
+| :---:  | :-: |
+|5MHz|40.98MHz|
+|9MHz|71.42MHz|
+|10MHz|80.97MHz|
+|12.5MHz|100MHz|
+
+## Post layout circuits
+
+### a. Phase Frequency Detector
+
+![pfd](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/684e746d-58a7-4822-b41c-8c5ee2b6ede9)
+
+</p>
+
+Fig: Layout of Phase Frequency Detector (PFD)
+
+</p>
+
+### b. Voltage controlled oscillator
+
+![vco](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/d85d276e-f237-4e7c-8b1c-b94341e762b9)
+
+</p>
+Fig: Layout of Voltage controlled oscillator (VCO)
+</p>
+
+### c. Charge pump & loop filter
+
+![charge pump](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/49cd8b07-fd8e-49ed-9c59-ecec3e08b041)
+
+</p>
+Fig. - Combined layout of charge pump and loop filter (large boxes are the capacitors of the loop filter)
+</p>
+
+### Charge pump close up
+
+![cp_closeup](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/e66b71e4-0240-4d74-abf7-530827c2e7a7)
 
 
+### d. Frequency divider 
+
+![fd_8](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/6ce6849d-b86a-48ac-a78b-eec360b9e60f)
+
+</p>
+Fig: Layout of Frequency divider by 8 circuit
+</p>
+
+The frequency divider by 8 is made from cascading three frequency divider by 2 circuits. The fd/2 ckt layout is shown below <br>
+
+![fd](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/9154e348-9454-4047-9c02-a89535744014)
+
+### d. Integrated PLL layout  
+
+![pll](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/14cf6011-2ee7-44c1-bd56-03dd433051d7) 
+
+
+</p> PLL Layout closeup </p>
+
+![pll close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/8d737abc-ce6e-41a3-ac86-3403315fc153)
+
+## Post layout simulations
+
+| Parameter | Description | min | val | max | Unit | Conditions |
+| --- | --- | --- | --- | --- | --- | --- |
+| VDD | Digital Supply | - | 1.8 | - | V | T = 27C |
+| F<sub>CLKREF</sub> | Reference | 5 | 9 | 12.5 | MHz | T = 27C |
+| F<sub>CLKOUT</sub> | Output Clock | 40.76 | 73.26 | 100 | MHz | PLL Mode, T = 27C |
+| V<sub>ctrl</sub> | Control Voltage | 0.732 | 0.780 | 0.789 | MHz | PLL Mode, T = 27C |
+| DC | Duty Cycle | 56.82 | 58.82 | 60.27 | % | T = 27C | 
+| T<sub>SET</sub> | Settling Time | ~8.6 | ~5.1 | ~6.4 | us | T = 27C |
+
+
+### 1. 5 Mhz input 
+
+![5mhz](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/8b283b03-5bc5-4339-a76b-471f6559c6b6)
+
+</p>
+
+**Fig - PLL simulation for 5Mhz input frequency**
+</p>
+
+Red - input signal <br>
+Blue (on red signal) - feedback signal <br>
+Yellow - up signal <br>
+Green - down signal <br>
+Pink - control voltage <br>
+Brown - output signal <br>
+
+ <br>
+ 
+![5mhz io](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/26d17467-b601-428d-8a17-177750a49487)
+
+
+</p>
+
+**Fig - input - output for 5 Mhz operation**
+</p>
+
+ <br>
+ 
+![5mhz close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/02d512ad-2b7c-49a8-83ec-25f60750f3ce)
+
+</p>
+
+**Fig - settled output for 5 Mhz operation**
+</p>
+ <br>
+ 
+### 2. 9 Mhz input 
+
+![9mhz ](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/32562197-f69e-4f4b-b44a-f2261fe4645d)
+
+</p>
+
+**Fig - PLL simulation for 9Mhz input frequency**
+</p>
+ <br>
+ 
+![9mhz io](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/ce9e5ad2-591e-4678-b524-f9d7468729a9)
+
+</p>
+
+**Fig - input-output for 9mhz operation**
+</p>
+ <br>
+ 
+![9mhz close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/a52abebe-0132-4ff4-b873-10ec05864b58)
+
+</p>
+
+**Fig - settled output for 5 Mhz operation**
+</p>
+ <br>
+ 
+### 2. 12.5 Mhz input 
+
+![12 5mhz ](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/28ec026d-b424-4511-b959-4b16f7053330)
+</p>
+
+**Fig - PLL simulation for 12.5Mhz input frequency**
+</p>
+ <br>
+ 
+![12 5mhz io](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/ac5e35e0-a25b-4e6e-9580-c4542817cd69)
+
+</p>
+
+**Fig - input-output for 12.5mhz operation**
+</p>
+ <br>
+ 
+![9mhz close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/3f65067a-3c7c-4b79-a38c-324df48e4c99)
+
+</p>
+
+**Fig - settled output for 12.5 Mhz operation**
+</p>
+ <br>
+ 
 <h3> References </h3>
 <b>[1]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
 <b>[2]</b> Vincent Von Kaenel, “A 320 MHz, 1.5 mW @ 1.35 V CMOS PLL for Microprocessor Clock Generation” (1996) <br> <br> 
