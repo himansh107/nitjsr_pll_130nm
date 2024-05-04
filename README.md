@@ -8,18 +8,28 @@ A simple PLL consists of a Phase and Frequency Detector (PFD), Charge Pump (CP),
 
 ## Specifications
 
+### Pre layout simulations
+
 | Parameter | Description | min | val | max | Unit | Conditions |
 | --- | --- | --- | --- | --- | --- | --- |
 | VDD | Digital Supply | - | 1.8 | - | V | T = 27C |
 | F<sub>CLKREF</sub> | Reference | 5 | 9 | 12.5 | MHz | T = 27C |
 | F<sub>CLKOUT</sub> | Output Clock | 40.98 | 71.42 | 100 | MHz | PLL Mode, T = 27C |
 | V<sub>ctrl</sub> | Control Voltage | 0.77 | 0.817 | 0.844 | MHz | PLL Mode, T = 27C |
-| J<sub>RMS</sub> | Jitter (rms) | - | - | - | ps | PLL_Mode |
 | DC | Duty Cycle | 60.24 | 61.26 | 61.38 | % | T = 27C | 
 | T<sub>SET</sub> | Settling Time | ~12 | ~11.5 | ~9 | us | T = 27C |
-| C<sub>L</sub> | Load Capacitance | - | - | - | fF | T = 27C |
-| IDD | Supply Current | - | - | - | fF | T = 27C |
 
+
+### Post layout simulations
+
+| Parameter | Description | min | val | max | Unit | Conditions |
+| --- | --- | --- | --- | --- | --- | --- |
+| VDD | Digital Supply | - | 1.8 | - | V | T = 27C |
+| F<sub>CLKREF</sub> | Reference | 5 | 9 | 12.5 | MHz | T = 27C |
+| F<sub>CLKOUT</sub> | Output Clock | 40.76 | 73.26 | 100 | MHz | PLL Mode, T = 27C |
+| V<sub>ctrl</sub> | Control Voltage | 0.732 | 0.780 | 0.789 | MHz | PLL Mode, T = 27C |
+| DC | Duty Cycle | 56.82 | 58.82 | 60.27 | % | T = 27C | 
+| T<sub>SET</sub> | Settling Time | ~8.6 | ~5.1 | ~6.4 | us | T = 27C |
 
 ## EDA tools used
 
@@ -187,17 +197,15 @@ Lock-in starts at ~12us for 5MHz input and ~9us for 12.5Mhz input
 
 ### a. Phase Frequency Detector
 
-![pfd](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/684e746d-58a7-4822-b41c-8c5ee2b6ede9)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/684e746d-58a7-4822-b41c-8c5ee2b6ede9" width="800"/>
 
 </p>
-
 Fig: Layout of Phase Frequency Detector (PFD)
-
 </p>
 
 ### b. Voltage controlled oscillator
 
-![vco](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/d85d276e-f237-4e7c-8b1c-b94341e762b9)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/d85d276e-f237-4e7c-8b1c-b94341e762b9" width="800"/>
 
 </p>
 Fig: Layout of Voltage controlled oscillator (VCO)
@@ -205,7 +213,8 @@ Fig: Layout of Voltage controlled oscillator (VCO)
 
 ### c. Charge pump & loop filter
 
-![charge pump](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/49cd8b07-fd8e-49ed-9c59-ecec3e08b041)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/49cd8b07-fd8e-49ed-9c59-ecec3e08b041" width="800"/>
+
 
 </p>
 Fig. - Combined layout of charge pump and loop filter (large boxes are the capacitors of the loop filter)
@@ -213,12 +222,13 @@ Fig. - Combined layout of charge pump and loop filter (large boxes are the capac
 
 ### Charge pump close up
 
-![cp_closeup](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/e66b71e4-0240-4d74-abf7-530827c2e7a7)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/e66b71e4-0240-4d74-abf7-530827c2e7a7" width="800"/>
 
 
 ### d. Frequency divider 
 
-![fd_8](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/6ce6849d-b86a-48ac-a78b-eec360b9e60f)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/6ce6849d-b86a-48ac-a78b-eec360b9e60f" width="800"/>
+
 
 </p>
 Fig: Layout of Frequency divider by 8 circuit
@@ -226,7 +236,8 @@ Fig: Layout of Frequency divider by 8 circuit
 
 The frequency divider by 8 is made from cascading three frequency divider by 2 circuits. The fd/2 ckt layout is shown below <br>
 
-![fd](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/9154e348-9454-4047-9c02-a89535744014)
+<img src ="https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/9154e348-9454-4047-9c02-a89535744014" width="800"/>
+
 
 ### d. Integrated PLL layout  
 
