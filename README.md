@@ -1,4 +1,4 @@
-![Screenshot 2024-05-04 230031](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/24baef80-cf69-45dc-bef2-2b31f3594a7e)
+![Screenshot 2024-05-04 230031](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/0fb828e9-5647-4c41-90b5-55a37a1a93f8)
 
 ## Introduction
 A clock multiplier Phase-Locked Loop (PLL) is a negative feedback control system that generates a high-frequency output clock whose phase is related to the low frequency input clock. The need for PLLs is widespread as they find application in analog, digital, RF and communication systems. <br>The low-frequency clock can be generated using a crystal with frequencies up to 200 MHz. Generating a high-frequency clock with high spectral purity is not possible with a crystal and this is where PLLs come into play. <br>
