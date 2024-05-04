@@ -1,4 +1,6 @@
-![Screenshot 2024-05-04 230031](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/0fb828e9-5647-4c41-90b5-55a37a1a93f8)
+# 130nm clock multiplier PLL
+
+An on-chip clock mulitplier PLL designed using open source tools and sky130nm pdk
 
 ## Introduction
 A clock multiplier Phase-Locked Loop (PLL) is a negative feedback control system that generates a high-frequency output clock whose phase is related to the low frequency input clock. The need for PLLs is widespread as they find application in analog, digital, RF and communication systems. <br>The low-frequency clock can be generated using a crystal with frequencies up to 200 MHz. Generating a high-frequency clock with high spectral purity is not possible with a crystal and this is where PLLs come into play. <br>
@@ -31,6 +33,11 @@ This PLL design multiplies clock frequency by 8 times.
 | V<sub>ctrl</sub> | Control Voltage | 0.732 | 0.780 | 0.789 | MHz | PLL Mode, T = 27C |
 | DC | Duty Cycle | 56.82 | 58.82 | 60.27 | % | T = 27C | 
 | T<sub>SET</sub> | Settling Time | ~8.6 | ~5.1 | ~6.4 | us | T = 27C |
+
+## Block Diagram
+
+![block diagram](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/898a9849-547b-4b49-8693-218195f6f29f)
+<br>
 
 ## EDA tools used
 
