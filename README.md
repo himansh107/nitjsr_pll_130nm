@@ -354,6 +354,9 @@ Brown - output signal <br>
 **Fig - settled output for 12.5 Mhz operation**
 </p>
  <br>
+
+
+
  
 <h3> References </h3>
 <b>[1]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
