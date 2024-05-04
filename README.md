@@ -82,7 +82,7 @@ This charge pump current is fed into the low pass filter. The low pass filter is
 This charge on the plates of the capacitor generates a voltage, which is then used as the control signal (Vctrl) to the VCO. </p>
 
 **Design considerations of Loop filter**</p>
-The loop filter consists of a resistor in series with a capacitor. This combination is in parallel with another capacitor as shown in figure above Capacitor C1 adds an integrator path and introduces a pole. The resistor adds a proportional path and introduces a zero. Thus, the system is stable with the addition of these two paths. Capacitor C2 is used to suppress the Vctrl ripple. However, the addition of an additional capacitor comprises on the stability of the PLL. This is because C2 adds another pole. So, to mitigate this issue the value of C2 is chosen to be smaller than C1 (~C2 = 0.2*C1) </p>
+The loop filter consists of a resistor in series with a capacitor. This combination is in parallel with another capacitor as shown in figure above Capacitor C1 adds an integrator path and introduces a pole. The resistor adds a proportional path and introduces a zero. Thus, the system is stable with the addition of these two paths. Capacitor C2 is used to suppress the Vctrl ripple. However, the addition of an additional capacitor comprises on the stability of the PLL. This is because C2 adds another pole. So, to mitigate this issue the value of C2 is chosen to be smaller than C1 (~C2 = 0.1*C1) </p>
 
 **Expected output (CP+LF)** </p>
 ![image](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/17e7cefc-83dc-4d28-8b2f-a3c657a7504e)
