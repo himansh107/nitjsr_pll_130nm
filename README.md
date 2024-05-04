@@ -243,12 +243,14 @@ The frequency divider by 8 is made from cascading three frequency divider by 2 c
 
 ### d. Integrated PLL layout  
 
-![pll](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/14cf6011-2ee7-44c1-bd56-03dd433051d7) 
+![pll](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/c99e676d-f2f8-4045-8c3a-07cf45d05fe2)
+
 
 
 </p> PLL Layout closeup </p>
 
-![pll close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/8d737abc-ce6e-41a3-ac86-3403315fc153)
+![pll close up](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/d45a6e15-418b-4197-bf0c-b9a4a0cefefb)
+
 
 ## Post layout simulations
 
