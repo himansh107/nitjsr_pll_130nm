@@ -41,7 +41,7 @@ This PLL design multiplies clock frequency by 8 times.
 ## Pre layout simulations
 
  ### 1. Phase frequency detector (PFD)  </p>
- A phase frequency detector outputs an UP or a DOWN signal depending upon the timed phase difference between the input signal and reference signal. If the input signal leads the reference signal an UP signal is produced whereas if the input lags the reference signal a down signal is produced. </p>
+ A phase frequency detector or a phase comparator outputs an UP or a DOWN signal depending upon the timed phase difference between the input signal and reference signal. If the input signal leads the reference signal an UP signal is produced whereas if the input lags the reference signal a down signal is produced. </p>
  
   **Circuit of PFD used** </p>
   ![Screenshot 2024-03-19 221328](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/5f4dd1ca-ac32-4786-a97e-554b49c25abf)
