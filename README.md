@@ -43,6 +43,7 @@ This PLL design multiplies clock frequency by 8 times.
 
 1. xschem
 2. ngspice
+3. magic vlsi 
 
 
 ## Pre layout simulations
@@ -69,13 +70,18 @@ There is a 1ns difference between the time period of f_vco and f_clk_in. This is
   
   ![pfd const phase difference](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/62593d02-524f-4fe3-beb0-b5d544289e8e)
    </p>
+   <br>
+
+![pfd_sim2](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/358856e7-eb94-4cbf-899f-e3022d035a80)
+
+Fig - Representation as a Phase error detector <br>
 
    - considering input and reference signal to have different time periods </p>
 
    ![pfd](https://github.com/himansh107/VSDCMOS_labs/assets/75253218/e8e84f63-12d9-4634-96e7-b8d72d29cae2)
 </p>
 
-In the above simulation result when f_clk_in leads f_vco , UP signal is triggered (yellow). While when the f_clk_in lags f_vco , DOWN signal is triggered. 
+In the above simulation result when **f_clk_in** **leads** **f_vco** , **UP** signal is triggered (yellow). While when the **f_clk_in lags f_vco** , **DOWN** signal is triggered. 
 These two (up & down) signals are fed into the charge pump which is the next block of our implemented PLL.</p>
 
 
@@ -355,26 +361,58 @@ Brown - output signal <br>
 </p>
  <br>
 
+## To use this repository
+
+1.	Clone the github repository in your ubuntu system
+2.	Go to postlayout folder and open terminal in the folder
+3.	Type ‘ngspice pll_tb.spice’
+4.	Paste the following command after simulation is complete
+
+ ```bash
+  plot V(f_clk_in)+8 V(x1.pfd_lay_0/f_vco)+8 V(x1.cp_0/up)+6 V(x1.cp_0/down)+4 V(x1.cp_0/vctrl)+2 V(f_clk_out)
+```
+
+ This will show the plots mentioned in the post layout section of this github repository <br>
+
+**To see the layout**
+
+1. Type in folder terminal window <br>
 
 
- 
+   ```bash
+	magic pll.mag 
+   ```
+
+
+2. The layout will be hollow when the magic tool is opened for the first time. To see the layout clearly. Open the magic terminal (opens with the magic tool) and type
+
+    ```bash
+     % select top cell
+     % expand
+    ```
+
+**NOTE** : all the above steps are valid for a system which has ngspice and magic (sky130nm integrated) installed. The same can be installed from [here](https://www.youtube.com/watch?v=VCuyO7Chvc8&t=2405s&ab_channel=whyRD) 
+
+
 <h3> References </h3>
-<b>[1]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
-<b>[2]</b> Vincent Von Kaenel, “A 320 MHz, 1.5 mW @ 1.35 V CMOS PLL for Microprocessor Clock Generation” (1996) <br> <br> 
-<b>[3]</b> J. Dhurga Devi “Jitter Reduced Self Biased PLLs—A Systematic Simulation Study”
-<b>[4]</b> Jitter and Phase Noise in Ring Oscillators, Ali Hajimiri, Sotirios Limotyrakis, and Thomas H. Lee <br> <br> 
-<b>[5]</b> Mo Zhang, A Programmable F ammable Frequency Divider Ha equency Divider Having a Wide Division Ratio ving a Wide Division Ratio Range, and Close-to-50% Output Duty-Cycle  <br> <br> 
-<b>[6]</b> George Tom Varghese, MS thesis on “Phase Locked Loop Design as a Frequency Multiplier” NIT Rourkela (2009) <br> <br> 
-<b>[7]</b> Yang Liu, “Phase Noise in CMOS Phase-Locked Loop Circuits” (2011) <br> <br> 
-<b>[8]</b>	Rushabh Mehta, Design and implementation of a phase locked loop for high-speed serial links <br> <br> 
-<b>[9]</b> Shruti Suman, An Improved Performance Ring VCO: Analysis and Design (2018)  <br> <br> 
-<b>[10]</b> Scott Buchanan, Phase Locked Loop Integrated Circuit (2015)  <br> <br> 
+<b>[1]</b> Paras Gidd, avsdpll_3v3 github repository <br> <br> 
+<b>[2]</b> Sun, Qingbo et al. “On-chip Phase Locked Loop (PLL) design for clock multiplier in CMOS Monolithic Active Pixel Sensors (MAPS).” (2009). <br> <br> 
+<b>[3]</b> Vincent Von Kaenel, “A 320 MHz, 1.5 mW @ 1.35 V CMOS PLL for Microprocessor Clock Generation” (1996) <br> <br> 
+<b>[4]</b> J. Dhurga Devi “Jitter Reduced Self Biased PLLs—A Systematic Simulation Study”
+<b>[5]</b> Jitter and Phase Noise in Ring Oscillators, Ali Hajimiri, Sotirios Limotyrakis, and Thomas H. Lee <br> <br> 
+<b>[6]</b> Mo Zhang, A Programmable F ammable Frequency Divider Ha equency Divider Having a Wide Division Ratio ving a Wide Division Ratio Range, and Close-to-50% Output Duty-Cycle  <br> <br> 
+<b>[7]</b> George Tom Varghese, MS thesis on “Phase Locked Loop Design as a Frequency Multiplier” NIT Rourkela (2009) <br> <br> 
+<b>[8]</b> Yang Liu, “Phase Noise in CMOS Phase-Locked Loop Circuits” (2011) <br> <br> 
+<b>[9]</b>	Rushabh Mehta, Design and implementation of a phase locked loop for high-speed serial links <br> <br> 
+<b>[10]</b> Shruti Suman, An Improved Performance Ring VCO: Analysis and Design (2018)  <br> <br> 
+<b>[11]</b> Scott Buchanan, Phase Locked Loop Integrated Circuit (2015)  <br> <br> 
 
 
 <h3> Acknowledgements </h3>
 
 - I thank Mr. Kunal Ghosh, co-founder [VSD](https://www.vlsisystemdesign.com/), for helping me through out the project, I would like to thank my college professors Dr. Chandradeep Singh and Dr. Kunal Singh for encouraging me initiate this project and helping me with conceptual doubts.
-- I thank Stephan Scrippers for helping me with the doubts in xschem and skywater pdk.
+- I thank Stephan Scrippers, David Mitchell Bailey, Luis Henrique Rodovalho, Tim Edwards and Lucas Daudt Franck from the [sky130 Slack channel](https://join.slack.com/t/open-source-silicon/shared_invite/zt-2eg56th1v-2SkdbmD6cGr9EbAFCJgIXw) for helping me with the doubts in xschem and skywater pdk.
+- Rajdeep Mazumder, who's [VLSI Project help video](https://www.youtube.com/watch?v=VCuyO7Chvc8&t=2405s&ab_channel=whyRD) helped me install the open source tools
 - I would also thank Paras Gidd, who's PLL repository was a reference for this project.
 
 
