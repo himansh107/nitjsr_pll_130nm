@@ -16,7 +16,7 @@ This PLL design multiplies clock frequency by 8 times.
 </p>The processors used in our smartphones have various modules inside serving different purposes. These modules may include CPU, GPU, RAM, WiFi module, Audio module, and so on. 
 
 </p> The interesting thing is that each of these modules may not run at a particular clock frequency. For example, the CPU would need a high clock frequency for performing calculations faster, while the Display module may not.
-</p> This is where a Phase-Locked Loop circuit comes into the picture. As shown in Figure 4, a PLL is installed at the clock entry point of each above module to produce the desired frequency at which the module would operate.
+</p> This is where a Phase-Locked Loop circuit comes into the picture. As shown in Figure above, a PLL is installed at the clock entry point of each above module to produce the desired frequency at which the module would operate.
 </p>
 
 <br>
