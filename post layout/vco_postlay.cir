@@ -1,0 +1,60 @@
+*.ipin vctrl
+*.opin osc
+*.iopin VDD
+*.iopin GND
+x1 osc VDD GND vctrl vco
+
+
+V1 VDD GND 1.8v
+V2 vctrl GND 0.6V
+
+**** begin user architecture code
+
+
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.tran 1ns 10u
+
+
+**** end user architecture code
+**.ends
+
+.subckt sky130_fd_pr__nfet_01v8_4BNSKG a_18_n42# a_n33_n130# a_n76_n42# a_n178_n216#
+X0 a_18_n42# a_n33_n130# a_n76_n42# a_n178_n216# sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.18
+.ends
+
+.subckt sky130_fd_pr__pfet_01v8_X4438S a_18_n72# w_n214_n291# a_n33_n169# a_n76_n72#
+X0 a_18_n72# a_n33_n169# a_n76_n72# w_n214_n291# sky130_fd_pr__pfet_01v8 ad=0.2088 pd=2.02 as=0.2088 ps=2.02 w=0.72 l=0.18
+.ends
+
+.subckt cs_inv Vp out in Vn VDD VSUBS
+XXM1 m1_879_n1632# in out VSUBS sky130_fd_pr__nfet_01v8_4BNSKG
+XXM2 m1_917_n552# VDD Vp VDD sky130_fd_pr__pfet_01v8_X4438S
+XXM3 out VDD in m1_917_n552# sky130_fd_pr__pfet_01v8_X4438S
+XXM4 VSUBS Vn m1_879_n1632# VSUBS sky130_fd_pr__nfet_01v8_4BNSKG
+.ends
+
+.subckt sky130_fd_pr__pfet_01v8_HBKBCU w_n214_n399# a_n33_n277# a_n76_n180# a_18_n180#
+X0 a_18_n180# a_n33_n277# a_n76_n180# w_n214_n399# sky130_fd_pr__pfet_01v8 ad=0.522 pd=4.18 as=0.522 ps=4.18 w=1.8 l=0.18
+.ends
+
+.subckt sky130_fd_pr__nfet_01v8_6FB46G a_18_n42# a_n33_n130# a_n76_n42# a_n178_n216#
+X0 a_18_n42# a_n33_n130# a_n76_n42# a_n178_n216# sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.18
+.ends
+
+.subckt vco osc VDD GND vctrl
+XXM23 GND x1/in osc GND sky130_fd_pr__nfet_01v8_4BNSKG
+XXM24 osc VDD x1/in VDD sky130_fd_pr__pfet_01v8_X4438S
+Xx1 Vp x7/in x1/in vctrl VDD GND cs_inv
+Xx3 Vp x6/in x3/in vctrl VDD GND cs_inv
+Xx2 Vp x5/in x2/in vctrl VDD GND cs_inv
+Xx4 Vp x3/in x4/in vctrl VDD GND cs_inv
+Xx5 Vp x4/in x5/in vctrl VDD GND cs_inv
+Xx6 Vp x1/in x6/in vctrl VDD GND cs_inv
+Xx7 Vp x2/in x7/in vctrl VDD GND cs_inv
+Xsky130_fd_pr__pfet_01v8_HBKBCU_0 VDD Vp VDD Vp sky130_fd_pr__pfet_01v8_HBKBCU
+XXM21 GND vctrl Vp GND sky130_fd_pr__nfet_01v8_6FB46G
+.ends
+
+
+.GLOBAL GND
+.end

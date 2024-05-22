@@ -1,0 +1,56 @@
+*.ipin clk1
+*.opin f_out
+*.iopin VDD
+*.iopin GND
+x1 VDD clk1 f_out GND fd_8
+V1 VDD GND 1.8v
+vin clk1 GND pulse(0 1.8v 2n 60p 60p 100n 200n)
+**** begin user architecture code
+
+.include /usr/local/share/pdk/sky130B/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.control
+tran 1ns 5us
+.endc
+
+**** end user architecture code
+**.ends
+
+.subckt sky130_fd_pr__pfet_01v8_XJ7KDL w_n211_n469# a_n73_n250# a_n33_n347# a_15_n250#
+X0 a_15_n250# a_n33_n347# a_n73_n250# w_n211_n469# sky130_fd_pr__pfet_01v8 ad=0.725 pd=5.58 as=0.725 ps=5.58 w=2.5 l=0.15
+.ends
+
+.subckt sky130_fd_pr__nfet_01v8_648S5X a_n73_n100# a_n33_n188# a_15_n100# a_n175_n274#
+X0 a_15_n100# a_n33_n188# a_n73_n100# a_n175_n274# sky130_fd_pr__nfet_01v8 ad=0.29 pd=2.58 as=0.29 ps=2.58 w=1 l=0.15
+.ends
+
+.subckt fd VDD GND clk m1_6090_122#
+XXM12 VDD VDD m1_2384_n248# m1_2770_1902# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM14 VDD VDD m1_6090_122# q_b sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM13 m1_6090_122# m1_4846_n206# GND GND sky130_fd_pr__nfet_01v8_648S5X
+XXM15 m1_2770_1902# m1_2384_n248# GND GND sky130_fd_pr__nfet_01v8_648S5X
+XXM16 VDD VDD clk clk_b sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM17 VDD VDD m1_4846_n206# m1_6090_122# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM18 clk_b clk GND GND sky130_fd_pr__nfet_01v8_648S5X
+XXM1 VDD VDD m1_992_n194# m1_2384_n248# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM2 q_b m1_6090_122# GND GND sky130_fd_pr__nfet_01v8_648S5X
+XXM3 XM3/w_n211_n469# m1_4846_n206# clk q_b sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM4 m1_4846_n206# clk m1_2384_n248# GND sky130_fd_pr__nfet_01v8_648S5X
+XXM5 m1_2384_n248# m1_992_n194# GND GND sky130_fd_pr__nfet_01v8_648S5X
+XXM6 VDD q_b clk m1_992_n194# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM7 VDD m1_2770_1902# clk_b m1_992_n194# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM8 m1_2770_1902# clk m1_992_n194# GND sky130_fd_pr__nfet_01v8_648S5X
+XXM9 VDD m1_4846_n206# clk_b m1_2384_n248# sky130_fd_pr__pfet_01v8_XJ7KDL
+XXM10 q_b clk_b m1_4846_n206# GND sky130_fd_pr__nfet_01v8_648S5X
+XXM11 m1_992_n194# clk_b q_b GND sky130_fd_pr__nfet_01v8_648S5X
+.ends
+
+.subckt fd_8 VDD clk1 f_out GND
+Xx1 VDD GND x1/clk f_out fd
+Xx2 VDD GND x2/clk x1/clk fd
+Xx3 VDD GND clk1 x2/clk fd
+.ends
+
+
+.GLOBAL GND
+.end

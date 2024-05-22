@@ -1,0 +1,78 @@
+*.opin up
+*.opin down
+*.ipin f_vco
+*.ipin f_clk_in
+
+x1 f_clk_in up VPWR GND down f_vco pfd_lay
+V1 f_clk_in GND pulse(0 1.8v 0 100p 100p 5n 10n)
+V2 f_vco GND pulse(0 1.8v 2n 100p 100p 5n 9n)
+V3 VPWR GND 1.8v
+**** begin user architecture code
+
+ .include /usr/local/share/pdk/sky130B/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.control
+ plot V(f_clk_in)+6 V(f_vco)+4 V(up)+2 V(down)
+tran .1ns 300n
+.endc
+
+**** end user architecture code
+**.ends
+
+.subckt sky130_fd_sc_hd__nand4_1 A B C D VGND VNB VPB VPWR Y
+X0 Y B VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.165 pd=1.33 as=0.135 ps=1.27 w=1 l=0.15
+X1 VPWR A Y VPB sky130_fd_pr__pfet_01v8_hvt ad=0.3 pd=2.6 as=0.165 ps=1.33 w=1 l=0.15
+X2 VPWR C Y VPB sky130_fd_pr__pfet_01v8_hvt ad=0.135 pd=1.27 as=0.135 ps=1.27 w=1 l=0.15
+X3 a_193_47# C a_109_47# VNB sky130_fd_pr__nfet_01v8 ad=0.08775 pd=0.92 as=0.08775 ps=0.92 w=0.65 l=0.15
+X4 Y A a_277_47# VNB sky130_fd_pr__nfet_01v8 ad=0.195 pd=1.9 as=0.10725 ps=0.98 w=0.65 l=0.15
+X5 a_277_47# B a_193_47# VNB sky130_fd_pr__nfet_01v8 ad=0.10725 pd=0.98 as=0.08775 ps=0.92 w=0.65 l=0.15
+X6 Y D VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.135 pd=1.27 as=0.26 ps=2.52 w=1 l=0.15
+X7 a_109_47# D VGND VNB sky130_fd_pr__nfet_01v8 ad=0.08775 pd=0.92 as=0.169 ps=1.82 w=0.65 l=0.15
+.ends
+
+.subckt sky130_fd_sc_hd__inv_1 A VGND VNB VPB VPWR Y
+X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 ad=0.169 pd=1.82 as=0.169 ps=1.82 w=0.65 l=0.15
+X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.26 pd=2.52 as=0.26 ps=2.52 w=1 l=0.15
+.ends
+
+.subckt sky130_fd_sc_hd__nand2_1 A B VGND VNB VPB VPWR Y
+X0 VPWR A Y VPB sky130_fd_pr__pfet_01v8_hvt ad=0.26 pd=2.52 as=0.135 ps=1.27 w=1 l=0.15
+X1 Y A a_113_47# VNB sky130_fd_pr__nfet_01v8 ad=0.169 pd=1.82 as=0.08775 ps=0.92 w=0.65 l=0.15
+X2 a_113_47# B VGND VNB sky130_fd_pr__nfet_01v8 ad=0.08775 pd=0.92 as=0.169 ps=1.82 w=0.65 l=0.15
+X3 Y B VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.135 pd=1.27 as=0.26 ps=2.52 w=1 l=0.15
+.ends
+
+.subckt sky130_fd_sc_hd__nand3_1 A B C VGND VNB VPB VPWR Y
+X0 VPWR B Y VPB sky130_fd_pr__pfet_01v8_hvt ad=0.165 pd=1.33 as=0.135 ps=1.27 w=1 l=0.15
+X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.26 pd=2.52 as=0.165 ps=1.33 w=1 l=0.15
+X2 a_193_47# B a_109_47# VNB sky130_fd_pr__nfet_01v8 ad=0.10725 pd=0.98 as=0.08775 ps=0.92 w=0.65 l=0.15
+X3 Y A a_193_47# VNB sky130_fd_pr__nfet_01v8 ad=0.169 pd=1.82 as=0.10725 ps=0.98 w=0.65 l=0.15
+X4 Y C VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0.135 pd=1.27 as=0.26 ps=2.52 w=1 l=0.15
+X5 a_109_47# C VGND VNB sky130_fd_pr__nfet_01v8 ad=0.08775 pd=0.92 as=0.169 ps=1.82 w=0.65 l=0.15
+.ends
+
+.subckt pfd_lay f_clk_in up VPWR VGND down f_vco
+Xx1 x9/A x5/C test2 x6/Y VGND VGND VPWR VPWR x9/B sky130_fd_sc_hd__nand4_1
+Xx3 f_vco VGND VGND VPWR VPWR x6/B sky130_fd_sc_hd__inv_1
+Xx2 x9/B x5/C VGND VGND VPWR VPWR x2/Y sky130_fd_sc_hd__nand2_1
+Xx5 x9/B x5/B x5/C VGND VGND VPWR VPWR x6/A sky130_fd_sc_hd__nand3_1
+Xx6 x6/A x6/B VGND VGND VPWR VPWR x6/Y sky130_fd_sc_hd__nand2_1
+Xx8 test2 x9/Y VGND VGND VPWR VPWR x9/A sky130_fd_sc_hd__nand2_1
+Xx9 x9/A x9/B VGND VGND VPWR VPWR x9/Y sky130_fd_sc_hd__nand2_1
+Xsky130_fd_sc_hd__nand3_1_0 x9/B test4 x9/A VGND VGND VPWR VPWR sky130_fd_sc_hd__inv_1_3/A
++ sky130_fd_sc_hd__nand3_1
+Xx10 x6/Y VGND VGND VPWR VPWR x12/A sky130_fd_sc_hd__inv_1
+Xx11 x2/Y x6/Y VGND VGND VPWR VPWR x5/C sky130_fd_sc_hd__nand2_1
+Xx12 x12/A VGND VGND VPWR VPWR x5/B sky130_fd_sc_hd__inv_1
+Xsky130_fd_sc_hd__nand2_1_0 sky130_fd_sc_hd__inv_1_3/A test1 VGND VGND VPWR VPWR test2
++ sky130_fd_sc_hd__nand2_1
+Xx13 x6/A VGND VGND VPWR VPWR down sky130_fd_sc_hd__inv_1
+Xsky130_fd_sc_hd__inv_1_0 sky130_fd_sc_hd__inv_1_1/Y VGND VGND VPWR VPWR test4 sky130_fd_sc_hd__inv_1
+Xsky130_fd_sc_hd__inv_1_1 test2 VGND VGND VPWR VPWR sky130_fd_sc_hd__inv_1_1/Y sky130_fd_sc_hd__inv_1
+Xsky130_fd_sc_hd__inv_1_2 f_clk_in VGND VGND VPWR VPWR test1 sky130_fd_sc_hd__inv_1
+Xsky130_fd_sc_hd__inv_1_3 sky130_fd_sc_hd__inv_1_3/A VGND VGND VPWR VPWR up sky130_fd_sc_hd__inv_1
+.ends
+
+
+.GLOBAL GND
+.end

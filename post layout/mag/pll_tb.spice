@@ -1,0 +1,26 @@
+**.subckt pll_tb osc f_clk_in VDD GND
+*.PININFO osc:O f_clk_in:I VDD:B GND:B
+
+x1 VDD GND f_clk_in f_clk_out pll
+V3 f_clk_in GND pulse(0 1.8v 0 60p 60p 62.5n 125n)
+V2 VDD GND 1.8v
+V4 VPWR GND 1.8v
+V5 VGND GND 0V
+
+**** begin user architecture code
+
+ .include /usr/local/share/pdk/sky130B/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+.lib /usr/local/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.control
+ plot V(f_clk_in)+8 V(f_out)+8 V(up)+6 V(down)+4 V(vctrl)+2 V(osc)
+tran .1ns 20u
+.endc
+
+**** end user architecture code
+**.ends
+
+.include pll.spice
+
+.GLOBAL GND
+.GLOBAL VDD
+.end
