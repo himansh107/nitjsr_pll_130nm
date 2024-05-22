@@ -1,4 +1,4 @@
-# 130nm clock multiplier PLL
+# 130nm On chip clock multiplier PLL
 
 An on-chip clock mulitplier PLL designed using open source tools and sky130nm pdk
 
