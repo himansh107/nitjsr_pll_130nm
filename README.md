@@ -376,7 +376,7 @@ Brown - output signal <br>
 ## To use this repository
 
 1.	Clone the github repository in your ubuntu system
-2.	Go to postlayout folder and open terminal in the folder
+2.	Go to the mag folder in the postlayout directory and open terminal in the folder
 3.	Type ‘ngspice pll_tb.spice’
 4.	Paste the following command after simulation is complete
 
