@@ -412,7 +412,7 @@ Brown - output signal <br>
 <b>[3]</b> Vincent Von Kaenel, “A 320 MHz, 1.5 mW @ 1.35 V CMOS PLL for Microprocessor Clock Generation” (1996) <br> <br> 
 <b>[4]</b> J. Dhurga Devi “Jitter Reduced Self Biased PLLs—A Systematic Simulation Study”
 <b>[5]</b> Jitter and Phase Noise in Ring Oscillators, Ali Hajimiri, Sotirios Limotyrakis, and Thomas H. Lee <br> <br> 
-<b>[6]</b> Mo Zhang, A Programmable F ammable Frequency Divider Ha equency Divider Having a Wide Division Ratio ving a Wide Division Ratio Range, and Close-to-50% Output Duty-Cycle  <br> <br> 
+<b>[6]</b> Mo Zhang, A Programmable Frequency Divider Having a Wide Division Ratio, and Close-to-50% Output Duty-Cycle  <br> <br> 
 <b>[7]</b> George Tom Varghese, MS thesis on “Phase Locked Loop Design as a Frequency Multiplier” NIT Rourkela (2009) <br> <br> 
 <b>[8]</b> Yang Liu, “Phase Noise in CMOS Phase-Locked Loop Circuits” (2011) <br> <br> 
 <b>[9]</b>	Rushabh Mehta, Design and implementation of a phase locked loop for high-speed serial links <br> <br> 
