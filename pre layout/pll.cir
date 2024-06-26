@@ -52,7 +52,7 @@ XM18 GND VDD VDD GND sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 m=1
 XM19 up_bar VDD net26 net26 sky130_fd_pr__pfet_01v8 L=0.18 W=0.54 nf=1 m=1
 XM20 up_bar GND net26 net26 sky130_fd_pr__nfet_01v8 L=0.18 W=0.36 nf=1 m=1
 V2 VDD GND 1.8v
-XC5 vctrl GND sky130_fd_pr__cap_mim_m3_1 W=100 L=125 m=1
+XC5 vctrl GND sky130_fd_pr__cap_mim_m3_1 W=100 L=225 m=1
 XC3 net29 GND sky130_fd_pr__cap_mim_m3_1 W=1000 L=125 m=1
 XR3 net29 vctrl sky130_fd_pr__res_generic_po W=0.48 L=1 m=1
 
