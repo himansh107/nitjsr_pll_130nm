@@ -267,7 +267,9 @@ The frequency divider by 8 is made from cascading three frequency divider by 2 c
 
 ![pll](https://github.com/himansh107/nitjsr_pll_130nm/assets/75253218/c99e676d-f2f8-4045-8c3a-07cf45d05fe2)
 
+<br>
 
+circuit area = 0.2641 mm2
 
 </p> PLL Layout closeup </p>
 
