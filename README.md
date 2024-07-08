@@ -344,7 +344,7 @@ Brown - output signal <br>
 
 </p>
 
-**Fig - settled output for 5 Mhz operation**
+**Fig - settled output for 9mhz operation**
 </p>
  <br>
  
